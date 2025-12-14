@@ -3,6 +3,7 @@ import UserLayout from "./layout/UserLayout";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AboutPage from "./pages/AboutPage";
+import DonatePage from "./pages/DonatePage";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/donate" element={<DonatePage />} />
         </Route>
       </Routes>
     </Router>
