@@ -1,5 +1,7 @@
+﻿import WhatWeDo from "../feature/whatwedo/components/WhatWeDo";
+
 const WhatWeDoPage = () => {
-  return <div>WhatWeDoPage</div>;
+  return <WhatWeDo />;
 };
 
 export default WhatWeDoPage;

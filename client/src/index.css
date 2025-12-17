@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -7,3 +7,4 @@
   --color-blue: #233875;
   --color-darkblue: #1a2b5f;
 }
+
