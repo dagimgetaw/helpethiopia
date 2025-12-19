@@ -1,5 +1,7 @@
+import Home from "../feature/Team/components/Home";
+
 const TeamPage = () => {
-  return <div>TeamPage</div>;
+  return <Home />;
 };
 
 export default TeamPage;
