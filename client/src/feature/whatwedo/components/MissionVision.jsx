@@ -1,7 +1,11 @@
 ﻿// src/feature/whatwedo/components/MissionVision.jsx
-import { missionVision } from "../constant"
 
 const MissionVision = () => {
+  const missionVision = {
+    mission: "To catalyze sustainable development in Ethiopia by empowering healthcare professionals, driving innovation, and fostering a comprehensive and inclusive healthcare ecosystem.",
+    vision: "A Healthy and Resilient Ethiopia with advanced healthcare infrastructure, a well-trained workforce, streamlined processes, and inclusive healthcare services for all."
+  };
+
   return (
     <section className="py-20 bg-gradient-to-r from-blue-100/50 to-amber-100/50">
       <div className="container mx-auto px-4">
@@ -89,21 +93,30 @@ const MissionVision = () => {
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              "medical training healthcare workers Ethiopia",
-              "community health education rural Ethiopia",
-              "hospital quality improvement program",
-              "healthcare leadership training workshop",
-              "patient support charity program Ethiopia",
-              "medical volunteers helping patients",
-              "healthcare innovation technology Ethiopia",
-              "community outreach medical camp",
-            ].map((query, index) => (
+              "/images/whatwedo/hero/kids-happy-africa-charity-redrhino.jpg",
+              "/images/whatwedo/hero/photo_2025-12-19_13-57-35.jpg",
+              "/images/whatwedo/education/photo_2025-12-19_14-05-39.jpg",
+              "/images/whatwedo/quality/photo_2025-12-19_14-03-48.jpg",
+              "/images/whatwedo/yeeteye/photo_2025-12-19_14-01-59.jpg",
+              "/images/whatwedo/education/photo_2025-12-19_14-05-47.jpg",
+              "/images/whatwedo/quality/photo_2025-12-19_14-04-03.jpg",
+              "/images/whatwedo/yeeteye/photo_2025-12-19_14-02-12.jpg"
+            ].map((img, index) => (
               <div key={index} className="relative h-48 rounded-xl overflow-hidden group">
                 <img
-                  src={`/.jpg?height=300&width=400&query=${query}`}
+                  src={img}
                   alt={`Program ${index + 1}`}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
+                  onError={(e) => {
+                    console.error(`Failed to load mission vision image: ${img}`);
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `
+                      <div class="w-full h-full bg-gradient-to-r from-blue-200 to-yellow-200 flex items-center justify-center rounded-xl">
+                        <span class="text-gray-600">Image ${index + 1}</span>
+                      </div>
+                    `;
+                  }}
                 />
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${
@@ -116,7 +129,7 @@ const MissionVision = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default MissionVision
+export default MissionVision;

@@ -1,7 +1,64 @@
 ﻿// src/feature/whatwedo/components/ServiceGallery.jsx
-import { services } from "../constant"
 
 const ServiceGallery = () => {
+  // Define services directly here with public paths
+  const services = [
+    {
+       id: 1,
+      title: "Ye'Eteye Charity Program",
+      description: "...",
+      image: "/images/whatwedo/education/photo_2025-12-19_14-05-39.jpg",
+      gallery: [
+        "/images/whatwedo/yeeteye/photo_2025-12-19_14-01-59.jpg",
+        "/images/whatwedo/yeeteye/photo_2025-12-19_14-02-12.jpg",
+        "/images/whatwedo/yeeteye/photo_2025-12-19_14-02-21.jpg"
+      ],
+      details: [
+        "Operates at Tikur Anbessa Specialised Hospital",
+        "Expanded to Zewditu Memorial Hospital",
+        "Focuses on rural area patients",
+        "Covers medical bills for economically disadvantaged"
+      ]
+    },
+    {
+      id: 2,
+      title: "Quality Improvement Programs",
+      description: "We implement impactful programs focusing on streamlining healthcare processes, enriching data-driven decision-making, and optimizing patient experience through continuous improvement initiatives.",
+      icon: "📊",
+      color: "gold",
+      stats: "15+ Active Programs",
+      image: "/images/whatwedo/quality/photo_2025-12-19_14-04-13.jpg",
+      gallery: [
+        "/images/whatwedo/quality/photo_2025-12-19_14-03-48.jpg",
+        "/images/whatwedo/quality/photo_2025-12-19_14-04-03.jpg",
+        "/images/whatwedo/quality/photo_2025-12-19_14-04-13.jpg"
+      ],
+      details: [
+        "Streamlines healthcare processes",
+        "Data-driven decision making",
+        "Patient experience optimization",
+        "Continuous improvement focus"
+      ]
+    },
+    {
+      id: 2,
+      title: "Quality Improvement Programs",
+      // ... other properties
+      image: "/images/whatwedo/quality/photo_2025-12-19_14-04-13.jpg",
+      gallery: [
+        "/images/whatwedo/quality/photo_2025-12-19_14-03-48.jpg",
+        "/images/whatwedo/quality/photo_2025-12-19_14-04-03.jpg",
+        "/images/whatwedo/quality/photo_2025-12-19_14-04-13.jpg"
+      ],
+      details: [
+        "Healthcare leadership training",
+        "Comprehensive mentorship programs",
+        "Next generation empowerment",
+        "Sustainable healthcare education"
+      ]
+    }
+  ];
+
   return (
     <section className="py-20 bg-gradient-to-b from-blue-50/50 to-yellow-50/50">
       <div className="container mx-auto px-4">
@@ -26,6 +83,10 @@ const ServiceGallery = () => {
                         alt={`${service.title} ${imgIndex + 1}`}
                         className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
                         loading="lazy"
+                        onError={(e) => {
+                          console.error(`Failed to load service image: ${img}`);
+                          e.target.src = "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                        }}
                       />
                       <div
                         className={`absolute inset-0 bg-gradient-to-t ${
@@ -119,7 +180,7 @@ const ServiceGallery = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default ServiceGallery
+export default ServiceGallery;

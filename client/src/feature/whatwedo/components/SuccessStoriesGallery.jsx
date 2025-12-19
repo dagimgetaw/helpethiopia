@@ -1,6 +1,62 @@
-﻿import { successStories } from "../constant"
+﻿// src/feature/whatwedo/components/SuccessStoriesGallery.jsx
 
 const SuccessStoriesGallery = () => {
+  // Success Stories
+  const successStories = [
+    {
+      id: 1,
+      name: "Edel Solomon",
+      age: "9 years",
+      location: "Buraiyu, Oromia",
+      condition: "Critical illness requiring ICU care",
+      title: "A Sister's Love and a Family's Hope",
+      story: "Edel Solomon is a brave 9-year-old girl from Buraiyu who faced one of the toughest battles of her young life. She spent over two months in the ICU and another month and a half in the B7 ward—almost four months in the hospital fighting for her life. Throughout this difficult time, her 11-year-old sister stayed by her side, sacrificing her own school attendance just to be close and offer comfort. Their father, who works tirelessly, could only visit once a week.",
+      image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      hospital: "Tikur Anbessa Specialised Hospital",
+      treatment: "ICU care and extended hospitalization",
+      outcome: "Recovering with family support"
+    },
+    {
+      id: 2,
+      name: "Ketele",
+      age: "7 years",
+      location: "Wolega, Oromia",
+      condition: "Severe bacterial infection",
+      title: "The Young Shepherd's Courageous Journey",
+      story: "Ketele, a 7-year-old boy from Wollega, spends his days tending to animals as a young shepherd. One day, while caring for the herd, he fell from a horse and injured his chest. The pain was sharp and deep, but out of fear of being punished, he kept the accident a secret from his parents. Days later, the pain grew worse, and a persistent cough set in. His family took him to several local and referral hospitals, but answers were hard to find. Eventually, he was referred to Tikur Anbessa Specialized Hospital, where doctors discovered a severe bacterial infection. The infection had caused fluid to build up around his heart and lungs, making it difficult for him to breathe.",
+      image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      hospital: "Tikur Anbessa Specialised Hospital",
+      treatment: "Treatment for bacterial infection",
+      outcome: "Successful recovery after specialized care"
+    },
+    {
+      id: 3,
+      name: "Usman Debisa",
+      age: "11 years",
+      location: "Oromia",
+      condition: "Chronic ITP",
+      title: "A Second Chance for Usman",
+      story: "Usman Debisa, an 11-year-old boy from Oromia, has been battling a rare autoimmune condition known as Chronic ITP. Diagnosed at Black Lion Hospital, his life took a difficult turn. For the past two years, his nose and gums have bled intermittently and uncontrollably, and his body has been covered in bruises. The illness forced him to leave school and stay home with his younger siblings. Once a bright and promising student, Usman is still in grade 1. His father, a farmer in rural Oromia with six children to care for, had exhausted all his savings trying to find a cure. When we found Usman in the Pediatric Casualty ward, he was unconscious and in shock. His condition was critical.",
+      image: "https://images.unsplash.com/photo-1631815585544-4d60c37c8bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      hospital: "Black Lion Hospital / Tikur Anbessa",
+      treatment: "Chronic ITP management",
+      outcome: "Ongoing treatment and support"
+    }
+  ];
+
+  // More moments images - use your actual images from public folder
+  // Change this array in SuccessStoriesGallery.jsx
+const moreMomentsImages = [
+    "/images/whatwedo/hero/photo_2025-12-19_13-57-35.jpg",
+  "/images/whatwedo/hero/photo_2025-12-19_13-57-56.jpg",
+  "/images/whatwedo/hero/photo_2025-12-19_13-58-07.jpg",
+  "/images/whatwedo/hero/photo_2025-12-19_13-58-16.jpg",
+  "/images/whatwedo/education/photo_2025-12-19_14-05-39.jpg",
+  "/images/whatwedo/education/photo_2025-12-19_14-05-47.jpg",
+  "/images/whatwedo/quality/photo_2025-12-19_14-03-48.jpg",
+  "/images/whatwedo/quality/photo_2025-12-19_14-04-03.jpg"
+];
+
   return (
     <section className="py-20 bg-gradient-to-b from-blue-50/30 to-yellow-50/30">
       <div className="container mx-auto px-4">
@@ -80,22 +136,28 @@ const SuccessStoriesGallery = () => {
             More <span className="text-blue-600">Moments</span> of <span className="text-yellow-600">Hope</span>
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              "https://images.unsplash.com/photo-1516549655669-df565bc5d5e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-              "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-            ].map((img, index) => (
+            {moreMomentsImages.map((img, index) => (
               <div key={index} className="relative h-48 rounded-xl overflow-hidden group">
                 <img
                   src={img}
                   alt={`Success ${index + 1}`}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
+                  onError={(e) => {
+                    console.error(`Failed to load moment image: ${img}`);
+                    // Fallback to Unsplash images if local images fail
+                    const fallbackImages = [
+                      "https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                      "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                      "https://images.unsplash.com/photo-1516549655669-df565bc5d5e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                    ];
+                    e.target.src = fallbackImages[index] || fallbackImages[0];
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-3 left-3 text-white font-bold text-sm">Story of Hope</div>
@@ -106,7 +168,7 @@ const SuccessStoriesGallery = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default SuccessStoriesGallery
+export default SuccessStoriesGallery;
