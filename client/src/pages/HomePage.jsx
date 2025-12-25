@@ -1,9 +1,15 @@
-import Home from "../feature/home/components/Home";
+import HomeHero from "../feature/home/components/HomeHero";
+import Mission from "../feature/home/components/Mission";
+import Impacts from "../feature/home/components/Impacts";
+import CTA from "../feature/home/components/CTA";
 
 const HomePage = () => {
   return (
     <>
-      <Home />
+      <HomeHero />
+      <Mission />
+      <Impacts />
+      <CTA />
     </>
   );
 };
