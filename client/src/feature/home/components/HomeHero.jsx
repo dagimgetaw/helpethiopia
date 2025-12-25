@@ -8,7 +8,7 @@ const EnhancedHero = () => {
   useEffect(() => {
     const images = [
       "/images/whatwedo/hero/photo_2025-12-19_13-57-35.jpg",
-      "/images/whatwedo/hero/photo_2025-12-19_13-57-56.jpg",
+      "/images/whatwedo/hero/photo_2025-12-19_13-58-16.jpg",
       "/images/whatwedo/hero/photo_2025-12-19_13-58-07.jpg"
     ];
     setHeroImages(images);
@@ -45,10 +45,15 @@ const EnhancedHero = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-blue mb-4 leading-tight">
               HELP <span className="text-blue">Ethiopia</span>
             </h1>
+<p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+  <span className="text-gold font-bold">Empowering</span> communities with{" "}
+  <span className="text-blue font-semibold">hope</span>,{" "}
+  <span className="text-gold font-semibold">care</span>, and{" "}
+  <span className="text-blue font-bold">action</span>, building a brighter{" "}
+  <span className="text-gold font-bold">Ethiopia</span>.
+</p>
 
-            <p className="text-xl md:text-2xl text-darkgray max-w-3xl mx-auto">
-              Empowering communities through compassion, care, and action.
-            </p>
+
 
             {/* Image Switch Buttons */}
             <div className="flex justify-center gap-4 mt-6">
