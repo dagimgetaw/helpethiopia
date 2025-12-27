@@ -25,7 +25,7 @@ const services = [
 
 const ServiceCard = ({ icon, title, description }) => {
   return (
-    <div className="group bg-white rounded-xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full">
+    <div className="group relative rounded-xl p-[1.5px] bg-gradient-to-br from-gold via-blue to-darkblue hover:from-blue hover:via-gold hover:to-darkblue transition-all duration-500">
       <div className="mb-6 flex items-center gap-4">
         <div className="p-3 rounded-lg bg-gray-50 group-hover:bg-gold/10 transition-colors">{icon}</div>
         <h3 className="text-xl font-semibold text-darkblue">{title}</h3>
