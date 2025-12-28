@@ -4,15 +4,10 @@ const CTA = () => {
   return (
     <section className="relative py-12 sm:py-16 font-text rounded-xl mx-6 sm:mx-12 md:mx-24 shadow-2xl overflow-hidden -mb-12">
       
-      {/* Dark Blue Background with Blur Effect using theme colors */}
+      {/* Dark Blue Background with Slight Blur Effect */}
       <div className="absolute inset-0 z-0">
-        {/* Dark blue base with gradient using theme colors */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#1a2b5f] via-[#233875] to-[#1a2b5f]"></div>
-        
-        {/* Blur effect overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a2b5f]/30 via-[#233875]/40 to-[#1a2b5f]/30 backdrop-blur-2xl"></div>
-        
-        {/* Subtle texture/noise */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a2b5f]/20 via-[#233875]/25 to-[#1a2b5f]/20 backdrop-blur-xl"></div>
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
@@ -48,13 +43,14 @@ const CTA = () => {
         </p>
 
         <div className="flex justify-center">
-          <button className="bg-[#ffde59] text-[#233875] px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border border-[#ffde59]/30">
+          <a 
+            href="http://10.240.69.50:3000/donate" 
+            className="bg-[#ffde59] text-[#233875] px-6 py-3 rounded-md font-bold text-base shadow-md border border-[#ffde59]/30 inline-block"
+          >
             Donate Now
-          </button>
+          </a>
         </div>
       </div>
-
-      
     </section>
   )
 }
