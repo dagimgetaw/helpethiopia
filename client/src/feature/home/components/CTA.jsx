@@ -2,7 +2,9 @@ import { HandHeart, HandCoins } from "@phosphor-icons/react";
 
 const CTA = () => {
   return (
-    <section className="relative py-12 sm:py-16 font-text rounded-xl mx-6 sm:mx-12 md:mx-24 shadow-2xl overflow-hidden -mb-12">
+   <section className="relative py-12 sm:py-16 font-text rounded-xl mx-6 sm:mx-12 md:mx-24 shadow-2xl overflow-hidden -mb-12 scale-90">
+
+
       
       {/* Dark Blue Background with Slight Blur Effect */}
       <div className="absolute inset-0 z-0">
