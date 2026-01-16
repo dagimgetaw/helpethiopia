@@ -1,20 +1,16 @@
 import { stats } from "../constant";
+import bg from "../../../assets/impact.jpg";
 
 const Impact = () => {
   return (
-    <section className="relative w-full py-24 overflow-hidden flex items-center justify-center font-text">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundAttachment: "fixed",
-        }}
+    <section className="relative w-full py-16 overflow-hidden flex items-center justify-center font-text">
+      <img
+        className="absolute inset-0 z-0 object-cover object-center w-full h-full"
+        src={bg}
+        alt="Impact background image"
       />
 
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-darkblue/95 via-darkblue/85 to-darkblue/95" />
+      <div className="absolute inset-0 z-0 bg-linear-to-br from-darkblue/95 via-darkblue/85 to-darkblue/95" />
 
       <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6">
         <div className="text-center mb-10">

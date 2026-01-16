@@ -8,7 +8,6 @@ import {
   UserCirclePlus,
 } from "phosphor-react";
 import { HandCoins } from "@phosphor-icons/react";
-import { SERVER_URL } from "../../../config/env";
 import university from "../../../assets/AAU logo.png";
 import hospital from "../../../assets/TkurAnbesa logo.jpg";
 import a from "../../../assets/story1.jpg";
@@ -92,7 +91,7 @@ export const success_storie = [
     image: a,
     story:
       "Edel Solomon is a brave 9-year-old girl from Buraiyu who faced one of the toughest battles of her young life. She spent over two months in the ICU and another month and a half in the B7 ward—almost four months in the hospital fighting for her life. <br /><br /> Throughout this difficult time, her 11-year-old sister stayed by her side, sacrificing her own school attendance just to be close and offer comfort. Their father, who works tirelessly, could only visit once a week.",
-    link: `http://${SERVER_URL}blogs/68c0383c66cbb344eee66e01`,
+    link: "/blog/68c0383c66cbb344eee66e01",
   },
   {
     id: 2,
@@ -103,7 +102,7 @@ export const success_storie = [
     image: b,
     story:
       "Ketele, a 7-year-old boy from Wollega, spends his days tending to animals as a young shepherd. One day, while caring for the herd, he fell from a horse and injured his chest. The pain was sharp and deep, but out of fear of being punished, he kept the accident a secret from his parents. <br /><br /> Days later, the pain grew worse, and a persistent cough set in. His family took him to several local and referral hospitals, but answers were hard to find. Eventually, he was referred to Tikur Anbessa Specialized Hospital, where doctors discovered a severe bacterial infection. The infection had caused fluid to build up around his heart and lungs, making it difficult for him to breathe.",
-    link: `http://${SERVER_URL}blogs/68c0383c66cbb344eee66e01`,
+    link: "/blog/68c0383c66cbb344eee66e01",
   },
   {
     id: 3,
@@ -114,6 +113,6 @@ export const success_storie = [
     image: c,
     story:
       "Usman Debisa, an 11-year-old boy from Oromia, has been battling a rare autoimmune condition known as Chronic ITP. Diagnosed at Black Lion Hospital, his life took a difficult turn. For the past two years, his nose and gums have bled intermittently and uncontrollably, and his body has been covered in bruises.<br/><br/> The illness forced him to leave school and stay home with his younger siblings. Once a bright and promising student, Usman is still in grade 1 His father, a farmer in rural Oromia with six children to care for, had exhausted all his savings trying to find a cure. When we found Usman in the Pediatric Casualty ward, he was unconscious and in shock. His condition was critical.",
-    link: `http://${SERVER_URL}blogs/68c0383c66cbb344eee66e01`,
+    link: "/blog/68c0383c66cbb344eee66e01",
   },
 ];

@@ -84,10 +84,10 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-4 md:gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12">
           <div className="lg:w-2/5">
-            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg h-full border border-gray-100">
-              <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 pb-2 sm:pb-4 mb-4 border-b border-gray-200">
+            <div className="bg-white py-6 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg h-full border border-gray-100">
+              <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 pb-3 sm:pb-4 mb-4 border-b border-gray-200">
                 Contact Information
               </h2>
 
@@ -149,8 +149,8 @@ const Contact = () => {
           </div>
 
           <div className="lg:w-3/5">
-            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
-              <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 pb-2 sm:pb-4 mb-4 border-b border-gray-200">
+            <div className="bg-white py-6 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+              <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 pb-3 sm:pb-4 mb-4 border-b border-gray-200">
                 Send Us a Message
               </h2>
 

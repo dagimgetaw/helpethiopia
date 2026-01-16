@@ -3,9 +3,9 @@ import { success_storie } from "../constant/index";
 
 const SuccessStories = () => {
   return (
-    <div className="py-16 sm:py-18 px-6 md:px-12 lg:px-24 bg-bg font-text">
+    <div className="pt-12 pb-2 sm:py-12 px-6 md:px-12 lg:px-24 bg-bg font-text">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-darkblue mb-4">
             Success Stories
           </h2>
@@ -14,7 +14,7 @@ const SuccessStories = () => {
           </p>
         </div>
 
-        <div className="space-y-16">
+        <div className="space-y-8 sm:space-y-16">
           {success_storie.map((story, index) => {
             const isEven = index % 2 === 0;
 
