@@ -1,84 +1,91 @@
-﻿// src/feature/whatwedo/components/CoreServices.jsx
+﻿import { Steps, GraduationCap } from "@phosphor-icons/react";
+
 const CoreServices = () => {
-  const services = [
-    {
-      id: 1,
-      title: "Ye'Eteye Charity",
-      description: "Direct financial aid for patients struggling with medical bills at Tikur Anbessa Hospital, focusing on rural and economically disadvantaged individuals.",
-      icon: "❤️",
-      color: "red",
-      features: ["1000+ patients helped", "Rural area focus", "Multi-hospital operation"],
-      gradient: "from-red-500 to-pink-500"
-    },
-    {
-      id: 2,
-      title: "Quality Improvement",
-      description: "Streamlining healthcare procedures, optimizing patient transfers, and implementing data-driven systems for better hospital management.",
-      icon: "📊",
-      color: "blue",
-      features: ["15+ active programs", "Process optimization", "Data enhancement"],
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      id: 3,
-      title: "Education & Leadership",
-      description: "Empowering the next generation of healthcare leaders through comprehensive training, mentorship, and capacity building programs.",
-      icon: "👨‍🏫",
-      color: "yellow",
-      features: ["490+ trained", "Mentorship programs", "Leadership development"],
-      gradient: "from-yellow-500 to-amber-500"
-    }
-  ];
-
   return (
-    <section className="py-16 relative">
-      <div className="container relative mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-8 h-px bg-blue-300"></div>
-            <span className="text-blue font-medium tracking-wider text-sm">OUR SERVICES</span>
-            <div className="w-8 h-px bg-blue-300"></div>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-darkblue mb-4">
-            Comprehensive <span className="text-blue">Healthcare</span> Solutions
-          </h2>
-          <p className="text-lg text-darkgray">
-            Focused initiatives creating sustainable impact across Ethiopia's healthcare system
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div key={service.id} className="group relative">
-              <div className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 h-full">
-                <div className="absolute -top-3 -left-3 w-10 h-10 rounded-xl bg-white shadow-md flex items-center justify-center font-bold text-darkgray border text-sm">
-                  0{index + 1}
-                </div>
-                
-                <div className={`w-16 h-16 rounded-xl mb-6 flex items-center justify-center text-3xl bg-gradient-to-br ${service.gradient} text-white shadow-md`}>
-                  {service.icon}
-                </div>
-                
-                <h3 className="text-xl font-bold text-darkblue mb-3">{service.title}</h3>
-                
-                <p className="text-darkgray mb-6 text-sm leading-relaxed">{service.description}</p>
-                
-                <div className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <div className={`w-1.5 h-1.5 rounded-full ${service.color === 'red' ? 'bg-red-400' : service.color === 'blue' ? 'bg-blue-400' : 'bg-yellow-400'}`}></div>
-                      <span className="text-darkgray text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className={`absolute bottom-0 left-6 right-6 h-0.5 rounded-full ${service.color === 'red' ? 'bg-gradient-to-r from-red-400 to-pink-400' : service.color === 'blue' ? 'bg-gradient-to-r from-blue-400 to-cyan-400' : 'bg-gradient-to-r from-yellow-400 to-amber-400'} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+    <div className="pb-8 md:pb-16 px-6 md:px-12 lg:px-24 xl:px-32 bg-bg font-text">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white p-4 md:p-8 rounded-xl shadow-sm border border-gray-200">
+            <div className="flex justify-center mb-6">
+              <div className="bg-darkblue/10 p-2 md:p-3 rounded-xl">
+                <Steps className="text-darkblue" size={32} weight="bold" />
               </div>
             </div>
-          ))}
+            <h2 className="text-base sm:text-lg md:text-xl font-semibold text-darkblue text-center mb-6">
+              Quality Improvement Programs
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-4">
+              HELP Ethiopia demonstrates a commitment to continuous improvement
+              by implementing three impactful programs focused on streamlining
+              healthcare processes, enriching data-driven decision-making, and
+              optimizing patient experience.
+            </p>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gray-900 mt-1 sm:mt-3 mr-1 sm:mr-2 shrink-0"></span>
+                <span className="text-xs sm:text-sm md:text-base text-gray-700 ml-2">
+                  Operating Room Efficiency Improvement
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gray-900 mt-1 sm:mt-3 mr-1 sm:mr-2 shrink-0"></span>
+                <span className="text-xs sm:text-sm md:text-base text-gray-700 ml-2">
+                  Improving Hospital Transfers
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gray-900 mt-1 sm:mt-3 mr-1 sm:mr-2 shrink-0"></span>
+                <span className="text-xs sm:text-sm md:text-base text-gray-700 ml-2">
+                  Data Registry Enhancement
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Education Card */}
+          <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col h-full">
+            <div className="p-8 flex-1">
+              <div className="flex justify-center mb-6">
+                <div className="bg-darkblue/10 p-2 md:p-3 rounded-xl">
+                  <GraduationCap
+                    className="text-darkblue"
+                    size={32}
+                    weight="bold"
+                  />
+                </div>
+              </div>
+              <h2 className="text-base sm:text-lg md:text-xl font-semibold text-darkblue text-center mb-6">
+                Education and Leadership Programs
+              </h2>
+              <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-4">
+                HELP Ethiopia recognizes that building a strong healthcare
+                system requires not just immediate interventions, but also
+                investment in the future.
+              </p>
+              <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-4">
+                Our Education and Leadership program focuses on empowering the
+                next generation of Ethiopians to become effective leaders and
+                agents of positive change within the healthcare sector.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gray-900 mt-1 sm:mt-3 mr-1 sm:mr-2 shrink-0"></span>
+                  <span className="text-xs sm:text-sm md:text-base text-gray-700 ml-2">
+                    Research Mentorship Program
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gray-900 mt-1 sm:mt-3 mr-1 sm:mr-2 shrink-0"></span>
+                  <span className="text-xs sm:text-sm md:text-base text-gray-700 ml-2">
+                    Youth Capacity Building for Leadership
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

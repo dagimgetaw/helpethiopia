@@ -1,35 +1,67 @@
-// src/feature/whatwedo/components/SimpleHero.jsx
-const SimpleHero = () => {
+import { mission, information } from "../constant";
+
+const Hero = () => {
   return (
-    <section className="relative pt-16 pb-20 bg-[var(--color-bg)] overflow-hidden">
-      {/* Background decorative blobs */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-[var(--color-blue)] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-      <div className="absolute top-12 right-0 w-72 h-72 bg-[var(--color-gold)] rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-2000"></div>
-      <div className="absolute -bottom-12 left-16 w-72 h-72 bg-[var(--color-darkblue)] rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-4000"></div>
-
-      <div className="container relative mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8" style={{ fontFamily: "var(--font-text)" }}>
-            <span style={{ color: "var(--color-blue)" }}>About</span> <span style={{ color: "var(--color-darkblue)" }}>HELP Ethiopia</span>
+    <div className="w-full bg-bg font-text py-6 md:py-16 px-4 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-6 sm:mb-12 md:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-darkblue mb-6">
+            About HELP Ethiopia
           </h1>
-
-          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-[var(--color-lightgray)]">
-            <p className="text-[var(--color-darkgray)] text-base md:text-lg leading-7 md:leading-9 mb-4" style={{ fontFamily: "var(--font-text)" }}>
-              HELP Ethiopia is a multidisciplinary non-profit organization registered in Ethiopia with registry number 5623. Committed to improving healthcare, we collaborate with local and international stakeholders to address neglected areas of health service delivery and training. We also run a dedicated charity program targeting economically disadvantaged groups—Ye&apos;Eteye Health Charity. Furthermore, we advocate for quality education, leadership, and collaboration as tools for sustainable healthcare and societal development. Hence the name &quot;HELP&quot;, which stands for Health, Education, Leadership, and Partnership.
+          <div className="h-1 w-20 bg-darkblue"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 sm:mb-16">
+          <div className="md:col-span-2">
+            <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-4">
+              HELP Ethiopia is a multidisciplinary non-profit organization
+              registered in Ethiopia with registry number 5623. Committed to
+              improving healthcare, we collaborate with local and international
+              stakeholders to address neglected areas of health service delivery
+              and training.
             </p>
 
-            {/* Pill tags */}
-            <div className="mt-8 pt-6 border-t border-[var(--color-lightgray)] flex flex-wrap justify-center gap-3">
-              <span className="bg-[var(--color-gold)] text-[var(--color-darkblue)] px-4 py-1.5 rounded-full font-medium text-sm">Health</span>
-              <span className="bg-[var(--color-blue)] text-[var(--color-gold)] px-4 py-1.5 rounded-full font-medium text-sm">Education</span>
-              <span className="bg-[var(--color-darkblue)] text-[var(--color-gold)] px-4 py-1.5 rounded-full font-medium text-sm">Leadership</span>
-              <span className="bg-[var(--color-lightgray)] text-[var(--color-darkblue)] px-4 py-1.5 rounded-full font-medium text-sm">Partnership</span>
+            <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-0 sm:mb-6">
+              We run a dedicated charity program targeting economically
+              disadvantaged groups Ye&apos;Eteye Health Charity. Furthermore, we
+              advocate for quality education, leadership, and collaboration as
+              tools for sustainable healthcare and societal development.
+            </p>
+          </div>
+          <div className="md:col-span-1">
+            <div className="px-2 sm:px-8">
+              <h3 className="text-xs sm:text-sm md:text-base font-semibold text-darkblue uppercase tracking-wide mb-4 sm:mb-6">
+                Our Mission
+              </h3>
+              <ul className="space-y-4">
+                {mission.map((item, index) => (
+                  <li className="flex items-start" key={index}>
+                    <span className="inline-block w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-gray-900 mt-1 sm:mt-2 mr-1 sm:mr-2 shrink-0"></span>
+                    <span className="text-xs sm:text-sm md:text-base text-gray-700 ml-2">
+                      {item.name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
+        <div className="border-t border-gray-200 pt-4 sm:pt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-12">
+            {information.map((item, index) => (
+              <div key={index}>
+                <p className="text-darkblue text-xs sm:text-sm md:text-base uppercase tracking-wide font-semibold mb-2">
+                  {item.title}
+                </p>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base font-medium">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default SimpleHero;
+export default Hero;

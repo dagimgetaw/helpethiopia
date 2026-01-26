@@ -1,4 +1,4 @@
-import { team_data } from "../../../constant";
+import { team_data } from "../constant";
 import SectionTitle from "../../../components/SectionTitle";
 import TeamCard from "../../../components/TeamCard";
 import Avatar from "../../../components/Avatar";
@@ -13,10 +13,10 @@ const Home = () => {
     <section className="bg-bg font-text px-4 sm:px-6 lg:px-8 pt-6 pb-12 md:pt-10 md:pb-16">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-darkblue">
             Meet Our Team
           </h2>
-          <p className="mt-3 sm:mt-4 text-xs sm:text-base md:text-lg text-black max-w-5xl mx-auto leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-darkgray max-w-5xl mx-auto leading-relaxed">
             HELP Ethiopia brings together passionate professionals dedicated to
             creating lasting change through innovation and collaboration.
           </p>

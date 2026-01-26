@@ -1,4 +1,4 @@
-import Hero from "../feature/about/components/Hero";
+import Hero from "../feature/about/components/hero";
 import HowWeStarted from "../feature/about/components/HowWeStarted";
 import Mission from "../feature/about/components/Mission";
 
@@ -8,7 +8,6 @@ const AboutPage = () => {
       <Hero />
       <HowWeStarted />
       <Mission />
-
     </>
   );
 };

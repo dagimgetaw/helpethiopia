@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { List, X } from "@phosphor-icons/react";
-import { nav_link } from "../../../constant";
+import { List, X } from "phosphor-react";
+import { nav_link } from "../constant";
 import logo from "../../../assets/logo.webp";
 
 const Header = () => {
@@ -45,7 +45,7 @@ const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className="relative px-4 py-2.5 text-sm font-medium text-blue transition-colors duration-300 group"
+                className="relative px-4 py-2.5 text-xs sm:text-sm font-medium text-blue transition-colors duration-300 group"
               >
                 <span className="relative z-10">{link.label}</span>
                 {/* Underline animation */}
@@ -56,7 +56,7 @@ const Header = () => {
 
           <div className="hidden lg:block">
             <Link to="/donate">
-              <button className="px-6 py-2.5 rounded-lg text-sm font-medium text-blue bg-gold cursor-pointer">
+              <button className="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-blue bg-gold cursor-pointer">
                 Donate Now
               </button>
             </Link>
@@ -80,20 +80,20 @@ const Header = () => {
             open ? "max-h-96" : "max-h-0"
           }`}
         >
-          <nav className="flex flex-col py-4 px-6 gap-2 text-center bg-white">
+          <nav className="flex flex-col py-2 mb-2 sm:py-4 px-6 gap-0 sm:gap-2 text-center bg-white">
             {nav_link.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setOpen(false)}
-                className="px-4 py-3 rounded-lg text-xs text-blue font-medium"
+                className="px-4 py-3 rounded-lg text-[10px] sm:text-xs text-blue font-medium"
               >
                 {link.label}
               </Link>
             ))}
 
             <Link to="/donate" onClick={() => setOpen(false)}>
-              <button className="w-full mt-2 px-6 py-3 rounded-lg text-xs font-semibold text-blue bg-gold transition-all duration-300 shadow-md">
+              <button className="w-full mt-2 px-6 py-3 rounded-lg text-[10px] sm:text-xs font-semibold text-blue bg-gold transition-all duration-300 shadow-md">
                 Donate Now
               </button>
             </Link>

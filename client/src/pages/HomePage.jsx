@@ -3,8 +3,9 @@ import Mission from "../feature/home/components/Mission";
 import Services from "../feature/home/components/Services";
 import Impacts from "../feature/home/components/Impacts";
 import Partner from "../feature/home/components/Partner";
+import Register from "../feature/home/components/Register";
 import SuccessStories from "../feature/home/components/SuccessStories";
-import CTA from "../feature/home/components/CTA";
+import Contact from "../feature/home/components/Contact";
 
 const HomePage = () => {
   return (
@@ -14,8 +15,9 @@ const HomePage = () => {
       <Services />
       <Impacts />
       <Partner />
+      <Register />
       <SuccessStories />
-      <CTA />
+      <Contact />
     </>
   );
 };

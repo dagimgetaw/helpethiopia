@@ -5,7 +5,7 @@ if (!DB_URL) {
   throw new Error("Define DB_URL in environment variable");
 }
 
-const connectDB = async () => {
+const ConnectDB = async () => {
   try {
     await mongoose.connect(DB_URL);
     console.log("Successfully connected to database.");
@@ -15,4 +15,4 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB;
+export default ConnectDB;

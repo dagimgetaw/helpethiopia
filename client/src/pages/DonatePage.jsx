@@ -5,8 +5,8 @@ import Method from "../feature/donate/components/Method";
 const DonatePage = () => {
   return (
     <>
-      <Home />
       <ImpactSection />
+      <Home />
       <Method />
     </>
   );

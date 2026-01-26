@@ -6,21 +6,18 @@ import {
   Envelope,
   Phone,
   PaperPlaneTilt,
-  CheckCircle,
   Copyright,
-} from "@phosphor-icons/react";
+} from "phosphor-react";
 import Loading from "../../../components/Loading.jsx";
-import { social_media } from "../../../constant/index.js";
+import { social_media } from "../constant";
 import logo from "../../../assets/logo2.webp";
 import { subscribe_schema } from "../schema/SubscribeSchema.js";
+import subscribe from "../api/subscribe_api.js";
 
 const Footer = () => {
-  const [loading, setLoading] = useState(false);
-  const [subscribed, setSubscribed] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [message, setMessage] = useState("");
-
-  const backendUrl = "s";
+  const [subscribed, setSubscribed] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -28,10 +25,46 @@ const Footer = () => {
     },
     validationSchema: subscribe_schema,
     onSubmit: async (values, { resetForm }) => {
-      setLoading(true);
       setErrorMessage(null);
+      try {
+        const payload = {
+          email: values.email,
+        };
+        const response = await subscribe(payload);
+
+        if (response.data.subscribedBefore) {
+          setMessage("You are already subscribed to our newsletter!");
+        }
+
+        if (response.data.newSubscriber) {
+          setMessage("Thank you for subscribing to our newsletter!");
+        }
+
+        if (response.data.success) {
+          setSubscribed(true);
+          resetForm();
+        } else {
+          setErrorMessage(response.data.message || "Subscription failed");
+        }
+      } catch (error) {
+        setErrorMessage(
+          error.response?.data?.message ||
+            error.message ||
+            "Failed to subscribe. Please try again."
+        );
+      }
     },
   });
+
+  const {
+    values,
+    handleChange,
+    handleBlur,
+    errors,
+    touched,
+    handleSubmit,
+    isSubmitting,
+  } = formik;
 
   return (
     <footer className="pt-16 pb-8 px-6 md:px-12 lg:px-24 bg-gradient-to-b from-[#0f1a3d] to-darkblue text-white font-text">
@@ -88,12 +121,12 @@ const Footer = () => {
             </p>
 
             {subscribed ? (
-              <div className="p-2 sm:p-4 bg-gold text-darkblue rounded-lg flex items-center gap-3 animate-in fade-in zoom-in duration-300">
-                <CheckCircle className="w-5 h-5 flex-shrink-0 animate-bounce" />
+              <div className="p-4 bg-[#FFDE59] text-[#1a2b5f] rounded-lg flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 flex-shrink-0" />
                 <span className="font-medium text-sm">{message}</span>
               </div>
             ) : (
-              <form onSubmit={formik.handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {errorMessage && (
                   <div className="p-3 bg-red-100 text-red-700 rounded text-sm animate-in slide-in-from-top duration-300">
                     {errorMessage}
@@ -109,35 +142,35 @@ const Footer = () => {
                       name="email"
                       placeholder="Your email address"
                       className={`pl-10 w-full px-4 py-3 text-xs sm:text-sm rounded-lg bg-darkblue border border-blue text-white placeholder-gray-400 focus:outline-none focus:ring-1 sm:focus:ring-2 focus:ring-gold transition-all duration-300 hover:border-gold/50 ${
-                        formik.touched.email && formik.errors.email
-                          ? "border-red-400 ring-2 ring-red-400/30"
+                        touched.email && errors.email
+                          ? "border-red-400 ring-2 ring-error"
                           : ""
                       }`}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
                     />
                   </div>
                 </div>
 
-                {formik.touched.email && formik.errors.email && (
+                {touched.email && errors.email && (
                   <p className="text-xs sm:text-sm text-red-300 animate-in slide-in-from-top duration-200">
-                    {formik.errors.email}
+                    {errors.email}
                   </p>
                 )}
 
                 <button
                   type="submit"
-                  disabled={loading || !formik.isValid}
+                  disabled={isSubmitting}
                   className={`w-full py-3 px-6 rounded-lg text-xs sm:text-sm font-medium group/btn relative overflow-hidden transition-all duration-300 ${
-                    loading || !formik.isValid
+                    isSubmitting
                       ? "bg-gold/70 cursor-not-allowed"
                       : "bg-gold text-darkblue shadow-md cursor-pointer"
                   } flex items-center justify-center gap-2`}
                 >
                   <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity duration-300"></div>
                   <div className="relative flex items-center gap-2">
-                    {loading ? (
+                    {isSubmitting ? (
                       <>
                         <Loading />
                         Subscribing...

@@ -232,7 +232,7 @@ const Chapa = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 rounded-md text-white bg-blue cursor-pointer"
+              className="w-full py-3 rounded-md text-xs sm:text-sm text-white bg-blue cursor-pointer"
             >
               {isSubmitting ? (
                 <span className="flex justify-center items-center gap-2">
@@ -244,8 +244,8 @@ const Chapa = () => {
               )}
             </button>
 
-            <div className="flex justify-center items-center gap-2 text-gray-500 text-xs">
-              <Lock className="text-blue-600 w-4 h-4" />
+            <div className="flex justify-center items-center gap-2 text-gray-500 text-[10px] sm:text-xs">
+              <Lock className="text-blue-600 w-3 h-3 sm:w-4 sm:h-4" />
               Payments are secure and encrypted
             </div>
           </div>

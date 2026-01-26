@@ -11,9 +11,9 @@ const Method = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
-    <div className="pb-8 md:pb-16 px-4 md:px-12 lg:px-20 xl:px-36 bg-bg font-text">
+    <div className="py-8 md:py-16 px-4 md:px-12 lg:px-20 xl:px-36 bg-bg font-text">
       <div className="p-6 sm:p-8 bg-white shadow-lg rounded-xl max-w-xl mx-auto font-text">
-        <h2 className="text-lg md:text-2xl font-bold text-center text-black mb-6">
+        <h2 className="text-lg md:text-2xl font-bold text-center text-darkblue mb-6">
           Choose Payment Method
         </h2>
 
@@ -21,7 +21,7 @@ const Method = () => {
           <div>
             <Link to="/pay-with-chapa">
               <button
-                className={`group w-full p-4 border sm:border-2 rounded-lg text-xs md:text-base flex items-center justify-between transition-all duration-200 ${
+                className={`group w-full p-3 sm:p-4 border sm:border-2 rounded-lg text-xs md:text-base flex items-center justify-between transition-all duration-200 ${
                   selectedOption === "birr"
                     ? "border-lightblue bg-blue-50"
                     : "border-gray-200 hover:border-blue-300 hover:bg-blue-50 cursor-pointer"
@@ -46,7 +46,7 @@ const Method = () => {
             <Link to="/pay-with-stripe">
               <button
                 onClick={() => setSelectedOption("mastercard")}
-                className={`group w-full p-4 border sm:border-2 rounded-lg text-xs md:text-base flex items-center justify-between transition-all duration-200 ${
+                className={`group w-full p-3 sm:p-4 border sm:border-2 rounded-lg text-xs md:text-base flex items-center justify-between transition-all duration-200 ${
                   selectedOption === "mastercard"
                     ? "border-lightblue bg-blue-50"
                     : "border-gray-200 hover:border-blue-300 hover:bg-blue-50 cursor-pointer"

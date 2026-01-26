@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { ChapaCheckout } from "../controller/chapa.controller.js";
 
-const chapaRoute = Router();
+const ChapaRoute = Router();
 
-chapaRoute.post("/chapa/initialize", ChapaCheckout);
+ChapaRoute.post("/chapa/initialize", ChapaCheckout);
 
-export default chapaRoute;
+export default ChapaRoute;
