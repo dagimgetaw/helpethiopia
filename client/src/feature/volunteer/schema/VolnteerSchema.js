@@ -101,10 +101,10 @@ export const registerSchema = yup.object().shape({
           ),
       otherwise: (schema) => schema.notRequired(),
     }),
-  interests: yup
-    .array()
-    .min(1, "Please select at least one area of interest")
-    .required("At least one interest is required"),
+  registrationType: yup
+    .string()
+    .required("Registration type is required")
+    .oneOf(["regular", "associate"], "Please select one of the options."),
   agreement: yup
     .string()
     .required("You must agree to the terms to continue")

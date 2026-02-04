@@ -54,7 +54,7 @@ const Volunteer = () => {
       organization: "",
       interests: [],
       agreement: "",
-      registrationType: "regular",
+      registrationType: "",
     },
     validationSchema: registerSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
@@ -62,11 +62,21 @@ const Volunteer = () => {
         setSubmitting(true);
         setMessage("");
 
+        // Prepare payload based on employment status
         const payload = {
           ...values,
           phoneNumber: countryCode + values.phoneNumber,
-          fieldOfWork: values.fieldOfWork || "Unknown",
-          organization: values.organization || "Unknown",
+          // Only include work fields if employment status is Employed or Self-employed
+          fieldOfWork: ["Employed", "Self-employed"].includes(
+            values.employmentStatus,
+          )
+            ? values.fieldOfWork
+            : "N/A",
+          organization: ["Employed", "Self-employed"].includes(
+            values.employmentStatus,
+          )
+            ? values.organization
+            : "N/A",
         };
 
         const response = await init_volnteer_regisration(payload);
@@ -76,8 +86,6 @@ const Volunteer = () => {
           resetForm();
         }
       } catch (error) {
-        console.error("Error submitting form:", error);
-
         if (error.response) {
           if (error.response.data?.alreadyRegistered) {
             setMessage("This email is already registered");
@@ -140,6 +148,11 @@ const Volunteer = () => {
     formik.resetForm();
     setFormSubmitted(false);
   };
+
+  // Helper to determine if work fields should be shown
+  const showWorkFields = ["Employed", "Self-employed"].includes(
+    values.employmentStatus,
+  );
 
   if (formSubmitted) {
     return <SuccessRegistration handleClearForm={handleClearForm} />;
@@ -208,6 +221,7 @@ const Volunteer = () => {
           onSubmit={handleSubmit}
           className="bg-white rounded-lg sm:rounded-2xl shadow-lg overflow-hidden border border-gray-100"
         >
+          {/* Personal Information Section */}
           <div className="p-4 sm:p-6 md:p-8">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 flex items-center">
               <User className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-blue-600" />
@@ -224,7 +238,7 @@ const Volunteer = () => {
                   htmlFor="firstName"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  First Name
+                  First Name *
                 </label>
                 <div
                   className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
@@ -258,7 +272,7 @@ const Volunteer = () => {
                   htmlFor="lastName"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  Last Name
+                  Last Name *
                 </label>
                 <div
                   className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
@@ -292,7 +306,7 @@ const Volunteer = () => {
                   htmlFor="gender"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  Gender
+                  Gender *
                 </label>
                 <div className="relative">
                   <div
@@ -331,7 +345,7 @@ const Volunteer = () => {
                   htmlFor="email"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  Email Address
+                  Email Address *
                 </label>
                 <div
                   className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
@@ -365,7 +379,7 @@ const Volunteer = () => {
                   htmlFor="birthYear"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  Birth Year
+                  Birth Year *
                 </label>
                 <div
                   className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
@@ -401,7 +415,7 @@ const Volunteer = () => {
                   htmlFor="phoneNumber"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  Phone Number
+                  Phone Number *
                 </label>
                 <div className="flex gap-2">
                   <div className="relative group">
@@ -458,7 +472,7 @@ const Volunteer = () => {
                   htmlFor="region"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  Region
+                  Region *
                 </label>
                 <div className="relative" ref={regionDropdownRef}>
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -518,7 +532,7 @@ const Volunteer = () => {
                             >
                               <span className="truncate">{region.name}</span>
                               {values.region === region.name && (
-                                <Check className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0" />
+                                <Check className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 shrink-0" />
                               )}
                             </button>
                           ))
@@ -544,7 +558,7 @@ const Volunteer = () => {
                   htmlFor="employmentStatus"
                   className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
                 >
-                  Employment Status
+                  Employment Status *
                 </label>
                 <div className="relative">
                   <div
@@ -583,86 +597,88 @@ const Volunteer = () => {
             </div>
           </div>
 
-          {/* Work Information Section */}
-          <div className="p-4 sm:p-6 md:p-8">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 flex items-center">
-              <BriefcaseBusiness className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-blue-600" />
-              Work Information
-            </h2>
-            <p className="text-gray-600 mb-6 sm:mb-8 text-xs sm:text-sm">
-              Tell us about your professional background
-            </p>
+          {/* Work Information Section - Conditionally Shown */}
+          {showWorkFields && (
+            <div className="p-4 sm:p-6 md:p-8">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                <BriefcaseBusiness className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-blue-600" />
+                Work Information
+              </h2>
+              <p className="text-gray-600 mb-6 sm:mb-8 text-xs sm:text-sm">
+                Tell us about your professional background
+              </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              <div className="space-y-1 sm:space-y-2">
-                <label
-                  htmlFor="fieldOfWork"
-                  className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
-                >
-                  Field of Work
-                </label>
-                <div
-                  className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
-                    errors.fieldOfWork && touched.fieldOfWork
-                      ? "border-error ring-0 sm:ring-1 ring-error"
-                      : "border-gray-300 hover:border-blue-500 hover:ring-1 hover:ring-blue-500"
-                  }`}
-                >
-                  <BriefcaseBusiness className="text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
-                  <input
-                    id="fieldOfWork"
-                    name="fieldOfWork"
-                    type="text"
-                    placeholder="e.g., Education, Healthcare, IT"
-                    className="w-full outline-none text-darkgray placeholder-gray-400 bg-transparent text-xs sm:text-sm"
-                    value={values.fieldOfWork}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    disabled={isSubmitting}
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div className="space-y-1 sm:space-y-2">
+                  <label
+                    htmlFor="fieldOfWork"
+                    className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
+                  >
+                    Field of Work *
+                  </label>
+                  <div
+                    className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
+                      errors.fieldOfWork && touched.fieldOfWork
+                        ? "border-error ring-0 sm:ring-1 ring-error"
+                        : "border-gray-300 hover:border-blue-500 hover:ring-1 hover:ring-blue-500"
+                    }`}
+                  >
+                    <BriefcaseBusiness className="text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                    <input
+                      id="fieldOfWork"
+                      name="fieldOfWork"
+                      type="text"
+                      placeholder="e.g., Education, Healthcare, IT"
+                      className="w-full outline-none text-darkgray placeholder-gray-400 bg-transparent text-xs sm:text-sm"
+                      value={values.fieldOfWork}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  {errors.fieldOfWork && touched.fieldOfWork && (
+                    <p className="text-error text-xs sm:text-sm mt-1 pl-2">
+                      {errors.fieldOfWork}
+                    </p>
+                  )}
                 </div>
-                {errors.fieldOfWork && touched.fieldOfWork && (
-                  <p className="text-error text-xs sm:text-sm mt-1 pl-2">
-                    {errors.fieldOfWork}
-                  </p>
-                )}
-              </div>
 
-              <div className="space-y-1 sm:space-y-2">
-                <label
-                  htmlFor="organization"
-                  className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
-                >
-                  Organization
-                </label>
-                <div
-                  className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
-                    errors.organization && touched.organization
-                      ? "border-error ring-0 sm:ring-1 ring-error"
-                      : "border-gray-300 hover:border-blue-500 hover:ring-1 hover:ring-blue-500"
-                  }`}
-                >
-                  <Building2 className="text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
-                  <input
-                    id="organization"
-                    name="organization"
-                    type="text"
-                    placeholder="Company or institution name"
-                    className="w-full outline-none text-darkgray placeholder-gray-400 bg-transparent text-xs sm:text-sm"
-                    value={values.organization}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    disabled={isSubmitting}
-                  />
+                <div className="space-y-1 sm:space-y-2">
+                  <label
+                    htmlFor="organization"
+                    className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2"
+                  >
+                    Organization *
+                  </label>
+                  <div
+                    className={`flex items-center gap-2 sm:gap-3 shadow-sm rounded-lg border text-xs sm:text-sm bg-white p-2 sm:p-3 transition-all duration-200 ${
+                      errors.organization && touched.organization
+                        ? "border-error ring-0 sm:ring-1 ring-error"
+                        : "border-gray-300 hover:border-blue-500 hover:ring-1 hover:ring-blue-500"
+                    }`}
+                  >
+                    <Building2 className="text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                    <input
+                      id="organization"
+                      name="organization"
+                      type="text"
+                      placeholder="Company or institution name"
+                      className="w-full outline-none text-darkgray placeholder-gray-400 bg-transparent text-xs sm:text-sm"
+                      value={values.organization}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  {errors.organization && touched.organization && (
+                    <p className="text-error text-xs sm:text-sm mt-1 pl-2">
+                      {errors.organization}
+                    </p>
+                  )}
                 </div>
-                {errors.organization && touched.organization && (
-                  <p className="text-error text-xs sm:text-sm mt-1 pl-2">
-                    {errors.organization}
-                  </p>
-                )}
               </div>
             </div>
-          </div>
+          )}
 
           {/* Interests Section */}
           <div className="p-4 sm:p-6 md:p-8">
@@ -715,11 +731,6 @@ const Volunteer = () => {
                 </div>
               ))}
             </div>
-            {errors.interest && touched.interest && (
-              <p className="text-error text-xs sm:text-sm mt-1 pl-2">
-                {errors.interest}
-              </p>
-            )}
           </div>
 
           {/* Review & Submit Section */}
@@ -801,7 +812,7 @@ const Volunteer = () => {
                     <Check className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                   </div>
                   <h4 className="text-base sm:text-lg font-semibold text-gray-900">
-                    Agreement
+                    Agreement *
                   </h4>
                 </div>
                 <p className="text-gray-700 mb-3 sm:mb-4 text-xs sm:text-sm">
@@ -849,7 +860,7 @@ const Volunteer = () => {
               {/* Registration Type */}
               <div className="mb-6 sm:mb-8">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4 sm:mb-6">
-                  Registration Type
+                  Registration Type *
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <label
@@ -866,6 +877,7 @@ const Volunteer = () => {
                         value="regular"
                         checked={values.registrationType === "regular"}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-1"
                       />
                       <div className="ml-2 sm:ml-3">
@@ -893,6 +905,7 @@ const Volunteer = () => {
                         value="associate"
                         checked={values.registrationType === "associate"}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-1"
                       />
                       <div className="ml-2 sm:ml-3">
@@ -906,6 +919,11 @@ const Volunteer = () => {
                       </div>
                     </div>
                   </label>
+                  {errors.registrationType && touched.registrationType && (
+                    <p className="text-error text-xs sm:text-sm mt-2 pl-2">
+                      {errors.registrationType}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,32 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import image1 from "../../../assets/image1.webp";
-import image2 from "../../../assets/image2.webp";
 import { CaretRight, CaretLeft, Clock, Calendar } from "phosphor-react";
-
-const data = [
-  {
-    id: 1,
-    image: image1,
-    title: "HELP Ethiopia at Ethiopian Nuclear Science Society Conference",
-    content:
-      "HELP Ethiopia proudly showcased its work at the Third Annual Ethiopian Nuclear Science Society Conference, presenting our healthcare, education, and charity initiatives while engaging with professionals committed to advancing science and health in Ethiopia.",
-    sub: "The event enabled us to highlight Ye’Eteye Charity, health service delivery, and education programs, connect with partners, and register new members and volunteers strengthening our mission to build a healthier, educated, and empowered society.",
-    date: "Sep 08, 2025",
-    category: "Conference",
-    readTime: "3 min read",
-  },
-  {
-    id: 2,
-    image: image2,
-    title: "Sport to Support: Fundraising for Ye’Eteye Charity",
-    content:
-      "We had an amazing time at the Feb 4 HELP Ethiopia sports event at St. Joseph School, featuring group aerobics and a competitive soccer match, all organized to raise funds for a meaningful health cause.",
-    sub: "The event supported Ye’Eteye Charity, aiding over 1,000 patients at Tikur Anbessa Hospital, while promoting HELP Ethiopia’s mission of Health, Education, Leadership, and Partnership through community engagement and advocacy.",
-    date: "Sep 10, 2025",
-    category: "Sport",
-    readTime: "2 min read",
-  },
-];
+import { data } from "..";
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,13 +30,12 @@ const Hero = () => {
     );
   };
 
-  const getTransform = () => {
-    return `translateX(-${currentIndex * 100}%)`;
-  };
+  const getTransform = () => `translateX(-${currentIndex * 100}%)`;
 
   return (
-    <div className="bg-bg font-text px-4 sm:px-6 lg:px-8 pt-6 pb-12 md:pt-10 md:pb-16">
+    <section className="bg-bg font-text px-4 sm:px-6 lg:px-8 pt-6 pb-12 md:pt-10 md:pb-16">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-6 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-darkblue">
             Insights & Updates
@@ -75,24 +48,24 @@ const Hero = () => {
 
         {/* Carousel */}
         <div className="relative group">
-          {/* Navigation Buttons */}
+          {/* Navigation */}
           <button
             onClick={() => navigate("prev")}
-            className="absolute top-1/2 -left-4 md:-left-8 transform -translate-y-1/2 bg-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-darkblue hover:text-white transition-all duration-300 z-10 cursor-pointer"
+            className="absolute top-1/2 -left-2 sm:-left-4 md:-left-8 -translate-y-1/2 bg-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-darkblue hover:text-white transition-all duration-300 z-10"
             aria-label="Previous slide"
           >
-            <CaretLeft className="w-4 h-4 sm:w-5 sm:h-5" weight="bold" />
+            <CaretLeft weight="bold" className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
           <button
             onClick={() => navigate("next")}
-            className="absolute top-1/2 -right-4 md:-right-8 transform -translate-y-1/2 bg-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-darkblue hover:text-white transition-all duration-300 z-10 cursor-pointer"
+            className="absolute top-1/2 -right-2 sm:-right-4 md:-right-8 -translate-y-1/2 bg-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-darkblue hover:text-white transition-all duration-300 z-10"
             aria-label="Next slide"
           >
-            <CaretRight className="w-4 h-4 sm:w-5 sm:h-5" weight="bold" />
+            <CaretRight weight="bold" className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
-          {/* Slides Container */}
+          {/* Slides Wrapper */}
           <div
             ref={containerRef}
             className="overflow-hidden rounded-2xl shadow-xl"
@@ -104,39 +77,40 @@ const Hero = () => {
               {data.map((blog) => (
                 <div
                   key={blog.id}
-                  className="shrink-0 w-full h-137.5 md:h-112.5 lg:h-112.5 flex"
+                  className="shrink-0 w-full min-h-[360px] sm:min-h-[460px] md:min-h-[520px] lg:min-h-[450px] flex"
                 >
                   <div className="bg-white flex flex-col lg:flex-row w-full rounded-2xl overflow-hidden">
-                    {/* Image Section */}
-                    <div className="w-full lg:w-1/2 h-64 lg:h-full relative">
+                    {/* Image */}
+                    <div className="w-full lg:w-1/2 h-56 sm:h-64 md:h-72 lg:h-auto relative">
                       <img
                         src={blog.image}
-                        alt={`Image for ${blog.title}`}
+                        alt={blog.title}
                         loading="lazy"
                         className="w-full h-full object-cover object-top"
                       />
-                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-6">
+                      <div className="absolute bottom-0 inset-x-0 p-2 sm:p-4 md:p-6">
                         <span className="inline-block px-3 py-1 text-[10px] sm:text-xs font-medium text-white bg-blue/80 rounded-full">
                           {blog.category}
                         </span>
                       </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className="w-full lg:w-1/2 p-8 md:p-12 flex flex-col">
-                      <h3 className="text-base sm:text-lg md:text-xl font-semibold text-darkblue mb-4 line-clamp-2">
+                    {/* Content */}
+                    <div className="w-full lg:w-1/2 px-4 py-6 sm:px-6 md:px-8 md:py-8 flex flex-col">
+                      <h3 className="text-sm sm:text-lg md:text-xl font-semibold text-darkblue mb-3 sm:mb-4 line-clamp-2">
                         {blog.title}
                       </h3>
 
-                      <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-4">
+                      <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-3 sm:mb-4">
                         {blog.content}
                       </p>
-                      <p className="hidden sm:flex text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-4">
+
+                      <p className="hidden sm:block text-xs sm:text-sm md:text-base text-gray-700 leading-6 md:leading-loose mb-4">
                         {blog.sub}
                       </p>
 
                       <div className="mt-auto pt-4 border-t border-gray-200">
-                        <div className="flex flex-wrap items-center gap-4 text-[10px] sm:text-xs md:text-sm text-gray-700 leading-6 md:leading-loose">
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] sm:text-xs md:text-sm text-gray-700">
                           <div className="flex items-center">
                             <Calendar size={14} className="mr-1" />
                             <span>{blog.date}</span>
@@ -155,13 +129,13 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Pagination Dots */}
+        {/* Pagination */}
         <div className="flex justify-center mt-8 gap-3">
           {data.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`h-3 w-3 rounded-full transition-all duration-300 ${
+              className={`h-3 w-3 md:h-4 md:w-4 rounded-full transition-all duration-300 ${
                 currentIndex === index
                   ? "bg-darkblue w-8"
                   : "bg-gray-300 hover:bg-gray-400"
@@ -171,7 +145,7 @@ const Hero = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

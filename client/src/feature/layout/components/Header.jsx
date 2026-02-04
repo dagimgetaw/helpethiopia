@@ -77,7 +77,7 @@ const Header = () => {
 
         <div
           className={`lg:hidden overflow-hidden   ${
-            open ? "max-h-96" : "max-h-0"
+            open ? "max-h-98" : "max-h-0"
           }`}
         >
           <nav className="flex flex-col py-2 mb-2 sm:py-4 px-6 gap-0 sm:gap-2 text-center bg-white">
@@ -101,7 +101,7 @@ const Header = () => {
         </div>
       </header>
 
-      <div className="h-20 md:h-24" />
+      <div className="h-18 md:h-24" />
     </>
   );
 };

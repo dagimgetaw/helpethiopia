@@ -13,7 +13,7 @@ const Method = () => {
   return (
     <div className="py-8 md:py-16 px-4 md:px-12 lg:px-20 xl:px-36 bg-bg font-text">
       <div className="p-6 sm:p-8 bg-white shadow-lg rounded-xl max-w-xl mx-auto font-text">
-        <h2 className="text-lg md:text-2xl font-bold text-center text-darkblue mb-6">
+        <h2 className="text-base sm:text-lg md:text-2xl font-bold text-center text-darkblue mb-6">
           Choose Payment Method
         </h2>
 

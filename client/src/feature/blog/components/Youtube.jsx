@@ -5,7 +5,7 @@ const Youtube = () => {
   return (
     <div className="pb-8 md:pb-16 px-4 sm:px-6 lg:px-8 bg-bg font-text">
       <div className="max-w-7xl mx-auto">
-        <div className="px-8 py-10 rounded-3xl bg-white shadow-lg border border-gray-200 flex flex-col md:flex-row items-center gap-8 transition-all duration-300 hover:shadow-xl">
+        <div className="px-8 py-10 bg-white rounded-lg shadow-lg border-gray-200 flex flex-col md:flex-row items-center gap-8 transition-all duration-300 hover:shadow-xl">
           <div className="relative">
             <img
               src={logo}

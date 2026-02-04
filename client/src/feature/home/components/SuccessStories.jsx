@@ -27,7 +27,7 @@ const SuccessStories = () => {
                   className={`md:flex ${!isEven ? "md:flex-row-reverse" : ""}`}
                 >
                   <div className="md:w-1/3">
-                    <div className="h-110 w-full">
+                    <div className="h-112 w-full">
                       <img
                         src={story.image}
                         alt={story.name}
@@ -52,14 +52,14 @@ const SuccessStories = () => {
                     </span>
 
                     <p
-                      className="text-darkgray leading-relaxed text-xs sm:text-base grow"
+                      className="text-gray-700 leading-relaxed  text-xs sm:text-sm md:text-base grow "
                       dangerouslySetInnerHTML={{ __html: story.story }}
                     ></p>
 
                     <div>
                       <Link
                         to={story.link}
-                        className="inline-block text-xs md:text-sm font-bold text-blue-700"
+                        className="inline-block text-xs md:text-sm font-bold text-blue-700 pt-2"
                       >
                         Read More
                       </Link>

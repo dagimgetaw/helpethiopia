@@ -12,7 +12,7 @@ import {
   Lock,
 } from "@phosphor-icons/react";
 import Loading from "../../../components/Loading";
-import init_chapa_payment from "../api/chapa_api";
+import init_chapa_payment from "../api/chapa_api.js";
 
 const Chapa = () => {
   const [countryCode, setCountryCode] = useState("+2519");
@@ -54,8 +54,7 @@ const Chapa = () => {
         // 🚀 redirect user to Chapa
         window.location.href = checkoutUrl;
       } catch (err) {
-        console.error(err);
-        alert("Payment initialization failed");
+        // alert("Payment initialization failed");
       } finally {
         setSubmitting(false);
       }

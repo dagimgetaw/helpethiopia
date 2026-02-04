@@ -7,6 +7,7 @@ import {
   Phone,
   PaperPlaneTilt,
   Copyright,
+  CheckCircle,
 } from "phosphor-react";
 import Loading from "../../../components/Loading.jsx";
 import { social_media } from "../constant";
@@ -50,7 +51,7 @@ const Footer = () => {
         setErrorMessage(
           error.response?.data?.message ||
             error.message ||
-            "Failed to subscribe. Please try again."
+            "Failed to subscribe. Please try again.",
         );
       }
     },
@@ -122,7 +123,7 @@ const Footer = () => {
 
             {subscribed ? (
               <div className="p-4 bg-[#FFDE59] text-[#1a2b5f] rounded-lg flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 shrink-0" />
                 <span className="font-medium text-sm">{message}</span>
               </div>
             ) : (
@@ -197,7 +198,7 @@ const Footer = () => {
               {social_media.map((social, index) => (
                 <Link
                   key={index}
-                  href={social.url}
+                  to={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-darkblue hover:bg-gold hover:text-darkblue rounded-lg transition-all duration-300"
@@ -227,7 +228,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-blue mt-12 pt-8 text-center text-xs sm:text-sm text-gray-300 flex items-center justify-center">
+        <div className="border-t border-blue mt-12 pt-6 sm:pt-8 text-center text-[10px] sm:text-xs text-gray-300 flex items-center justify-center">
           <Copyright className="mr-1 w-4 sm:w-5" /> {new Date().getFullYear()}{" "}
           HELP Ethiopia. All rights reserved.
         </div>
