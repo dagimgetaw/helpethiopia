@@ -104,6 +104,12 @@ const VolunteerSchema = new mongoose.Schema(
       },
     },
 
+    registrationType: {
+      type: String,
+      required: true,
+      enum: ["regular", "associate"],
+    },
+
     agreement: {
       type: Boolean,
       required: true,

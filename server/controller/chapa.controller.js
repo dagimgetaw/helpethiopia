@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CHAPA_SECRET_KEY } from "../config/env.js";
+import { CLIENT_URL, CHAPA_SECRET_KEY } from "../config/env.js";
 import ChapaPayment from "../models/chapa.model.js";
 
 const ChapaCheckout = async (req, res) => {
@@ -17,8 +17,8 @@ const ChapaCheckout = async (req, res) => {
         last_name: lastName,
         phone_number: phoneNumber,
         tx_ref,
-        callback_url: "https://yourdomain.com/api/chapa/callback",
-        return_url: "http://localhost:3000/payment-success",
+        // callback_url: "https://yourdomain.com/api/chapa/callback",
+        // return_url: `${CLIENT_URL}/payment-success`,
         customization: {
           title: "Donation Payment",
           description: "Thank you for your support",
@@ -29,7 +29,7 @@ const ChapaCheckout = async (req, res) => {
           Authorization: `Bearer ${CHAPA_SECRET_KEY}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
 
     await ChapaPayment.create({
@@ -44,7 +44,6 @@ const ChapaCheckout = async (req, res) => {
 
     res.json(response.data);
   } catch (error) {
-    console.error(error.response?.data || error.message);
     res
       .status(500)
       .json({ success: false, message: "Chapa initialization failed" });

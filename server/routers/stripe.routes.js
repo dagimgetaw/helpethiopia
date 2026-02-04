@@ -1,18 +1,8 @@
-// import express from "express";
 import { Router } from "express";
-import {
-  StripeCheckout,
-  SaveTransaction,
-} from "../controller/stripe.controller.js";
+import { StripeCheckout } from "../controller/stripe.controller.js";
 
-const stripeRoute = Router();
+const StripeRoute = Router();
 
-stripeRoute.post("/stripe/initialize", StripeCheckout);
+StripeRoute.post("/stripe/initialize", StripeCheckout);
 
-stripeRoute.post(
-  "/stripe/webhook",
-  // express.raw({ type: "application/json" }),
-  SaveTransaction
-);
-
-export default stripeRoute;
+export default StripeRoute;

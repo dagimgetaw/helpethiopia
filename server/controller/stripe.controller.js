@@ -1,93 +1,55 @@
 import Stripe from "stripe";
-import {
-  STRIPE_SECRET_KEY,
-  CLIENT_URL,
-  STRIPE_WEBHOOK_SECRET,
-} from "../config/env.js";
-import StripePayment from "../models/stripe.model.js";
+import { STRIPE_SECRET_KEY, CLIENT_URL } from "../config/env.js";
 
 const stripe = new Stripe(STRIPE_SECRET_KEY);
 
-const StripeCheckout = async (req, res, next) => {
+const StripeCheckout = async (req, res) => {
   try {
-    const { amount, email, firstName, lastName, country, id_ref } = req.body;
+    const { firstName, lastName, email, amount, country, id_ref } = req.body;
 
     if (!amount || amount <= 0) {
-      return res.status(400).json({ message: "Invalid amount" });
+      return res.status(400).json({ error: "Invalid amount" });
     }
+
+    const fullName = `${firstName} ${lastName}`;
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
+      mode: "payment",
+
+      customer_email: email,
+
       line_items: [
         {
           price_data: {
             currency: "usd",
             product_data: {
               name: "Donation",
-              description: "Thank you for your donation",
+              description: `Donation from ${fullName} (${country})`,
             },
             unit_amount: Math.round(amount * 100),
           },
           quantity: 1,
         },
       ],
-      mode: "payment",
-      customer_email: email,
+
       metadata: {
-        firstName,
-        lastName,
+        reference_id: id_ref,
         country,
-        email,
       },
-      success_url: `${CLIENT_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${CLIENT_URL}/payment/cancel`,
+
+      success_url: `${CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${CLIENT_URL}/cancel`,
     });
 
-    res.json({
+    return res.status(200).json({
       success: true,
-      message: "Checkout session created successfully",
       checkout_url: session.url,
       session_id: session.id,
     });
   } catch (error) {
-    next(error);
+    res.status(500).json({ error: "Payment processing failed" });
   }
 };
 
-const SaveTransaction = async (req, res, next) => {
-  const sig = req.headers["stripe-signature"];
-
-  let event;
-
-  try {
-    event = stripe.webhooks.constructEvent(
-      req.body,
-      sig,
-      STRIPE_WEBHOOK_SECRET
-    );
-  } catch (error) {
-    console.error("Webhook signature verification failed", error.message);
-    next(error);
-  }
-
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
-
-    await StripePayment.create({
-      firstName: session.metadata.firstName,
-      lastName: session.metadata.lastName,
-      email: session.metadata.email,
-      country: session.metadata.country,
-      amount: session.amount_total / 100,
-      currency: session.currency.toUpperCase(),
-      id_ref: session.metadata.id_ref,
-      status: "success",
-      stripeSessionId: session.id,
-      paymentIntentId: session.payment_intent,
-    });
-  }
-
-  res.json({ received: true });
-};
-
-export { StripeCheckout, SaveTransaction };
+export { StripeCheckout };

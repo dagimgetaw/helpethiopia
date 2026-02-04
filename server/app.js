@@ -7,6 +7,8 @@ import ChapaRoute from "./routers/chapa.routes.js";
 import MessageRoute from "./routers/message.routes.js";
 import SubscribeRoute from "./routers/subscribe.routes.js";
 import VolnteerRoute from "./routers/volnteer.routes.js";
+import BlogRoute from "./routers/blog.routes.js";
+import StripeRoute from "./routers/stripe.routes.js";
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.use("/api/v1", ChapaRoute);
 app.use("/api/v1", MessageRoute);
 app.use("/api/v1", SubscribeRoute);
 app.use("/api/v1", VolnteerRoute);
+app.use("/api/v1", BlogRoute);
+app.use("/api/v1", StripeRoute);
 
 app.get("/", (req, res) => {
   res.send("Welcome to help ethiopia admin api");
